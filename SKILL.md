@@ -1,6 +1,7 @@
 ---
 name: pptx-gen
 description: using pptxgenjs library to generate contents of powerpoint slides.
+author: mebusw
 ---
 
 
@@ -34,12 +35,97 @@ description: using pptxgenjs library to generate contents of powerpoint slides.
 
 Design Aesthetic: 温暖的手绘插画风格，模拟艺术家的速写本。整体氛围轻松、友好且富有创意。线条应带有手绘的自然波浪感和不完美感，避免生硬的几何直线。
 Background Color: 柔和的米白色，带有细微的水彩纸纹理，十六进制代码 #F9F7F2。
-Primary Font: 类似“演示悠然小楷”或手写圆体风格。标题应显得随意但清晰，像记号笔书写。
+Primary Font: 类似”演示悠然小楷”或手写圆体风格。标题应显得随意但清晰，像记号笔书写。
 Secondary Font: 清晰的手写体或圆润的无衬线体，用于正文，保持可读性但保留亲和力。
 Color Palette:
     Primary Text Color: 暖炭灰，#3E3C38 (模拟铅笔或墨水)。
     Primary Accent Color: 柔和的珊瑚红 #FF7F7F 和 鼠尾草绿 #8FA87A，用于高光和视觉重点。
 Visual Elements: 所有的图表、箭头和边框都应看起来像是用铅笔或马克笔手绘的。使用简单的简笔画人物、灯泡、星星和波浪线连接符。阴影应使用粗略的排线（hatching）而非渐变。
+
+---
+
+### 配色方案表
+
+选择配色时，应主动选择与主题契合的方案，而非默认使用通用蓝色。以下是精选的配色方案：
+
+| 主题 | Primary | Secondary | Accent |
+|------|---------|-----------|--------|
+| **Midnight Executive** | `1E2761` (深蓝) | `CADCFC` (冰蓝) | `FFFFFF` (白) |
+| **Forest & Moss** | `2C5F2D` (森林绿) | `97BC62` (苔藓绿) | `F5F5F5` (米白) |
+| **Coral Energy** | `F96167` (珊瑚红) | `F9E795` (金色) | `2F3C7E` (藏青) |
+| **Warm Terracotta** | `B85042` (陶土红) | `E7E8D1` (沙色) | `A7BEAE` (灰绿) |
+| **Ocean Gradient** | `065A82` (深海蓝) | `1C7293` (青色) | `21295C` (午夜蓝) |
+| **Charcoal Minimal** | `36454F` (炭灰) | `F2F2F2` (浅灰) | `212121` (黑色) |
+| **Teal Trust** | `028090` (青绿) | `00A896` (薄荷绿) | `02C39A` (鲜绿) |
+| **Berry & Cream** | `6D2E46` (浆果红) | `A26769` (玫瑰灰) | `ECE2D0` (奶油色) |
+| **Sage Calm** | `84B59F` (鼠尾草绿) | `69A297` (尤加利) | `50808E` (板岩色) |
+| **Cherry Bold** | `990011` (樱桃红) | `FCF6F5` (暖白) | `2F3C7E` (藏青) |
+| **Apple System** | `007AFF` (苹果蓝) | `8E8E93` (系统灰) | `FF9500` (橙色) |
+| **优普丰品牌(UPerform)** | `FF6B00` (活力橙) | `FFB800` (金黄) | `2D2D2D` (深灰) |
+
+**配色原则：**
+- **主导色占60-70%视觉权重**，1-2个辅助色，1个强调色
+- 避免所有颜色等权重分配
+- 深色背景用于标题和结尾页，浅色用于内容页（”三明治”结构）
+- 选一个独特的视觉元素并在每页重复使用
+
+---
+
+### 字体配对表
+
+选择有趣的字体组合，不要默认使用 Arial：
+
+| Header Font | Body Font | 适用场景 |
+|-------------|-----------|----------|
+| Georgia | Calibri | 正式商务、学术 |
+| Arial Black | Arial | 强烈、现代感 |
+| Trebuchet MS | Calibri | 科技、现代 |
+| Palatino | Garamond | 优雅、传统 |
+| Consolas | Calibri | 技术、数据 |
+| 演示悠然小楷 | 圆体 | 手绘、亲和 |
+
+| 元素 | 字号 |
+|------|------|
+| 幻灯片标题 | 36-44pt bold |
+| 章节标题 | 20-24pt bold |
+| 正文 | 14-16pt |
+| 注释/来源 | 10-12pt |
+
+---
+
+### 视觉元素设计指南
+
+**每张幻灯片都需要视觉元素** — 纯文字幻灯片容易被遗忘。
+
+**布局选项：**
+- 双栏（文字左，图片右）
+- 图标+文字行（彩色圆圈中的图标，标题粗体，说明文字在下方）
+- 2x2 或 2x3 网格
+- 半出血图片（占满左或右半侧）
+
+**数据展示：**
+- 大数字强调（60-72pt 大数字配小标签）
+- 对比栏（前后对比、优劣势对比）
+- 时间轴或流程图
+
+**视觉细节：**
+- 章节标题旁的小图标（放在彩色圆圈中）
+- 关键数据用斜体强调
+
+---
+
+### 避免的常见错误
+
+- **不要重复相同布局** — 变化栏位、卡片和强调点
+- **不要居中对齐正文** — 左对齐段落和列表；仅标题居中
+- **不要吝啬字号对比** — 标题需要36pt+与14-16pt正文形成对比
+- **不要默认使用蓝色** — 选反映主题的颜色
+- **不要随意混用间距** — 选择0.3”或0.5”间距并一致使用
+- **不要只美化一张幻灯片而忽略其他** — 全面投入或保持简约
+- **不要创建纯文字幻灯片** — 添加图片、图标、图表
+- **不要忘记文本框内边距** — 对齐线条或形状时设置 `margin: 0`
+- **不要使用低对比度元素** — 图标和文字都需要与背景形成强对比
+- **不要在标题下使用装饰线** — 这是 AI 生成幻灯片的标志；使用留白或背景色代替
 
 
 ## 请记住以下大纲编写规则：
@@ -148,3 +234,170 @@ Visual Elements: 所有的图表、箭头和边框都应看起来像是用铅笔
    - [ ] 图片与文字区域不重叠（如果文字在左，图片在右，反之亦然）
    - [ ] 图片使用`path`参数正确嵌入，不是`url`
    - [ ] `pptx_to_img.py`无溢出警告
+
+---
+
+### QA 验证流程
+
+**假设备注：总有问题。QA 是 bug 排查，不是确认步骤。如果第一次检查没发现问题，说明你看得不够仔细。**
+
+#### 内容 QA
+
+```bash
+# 文本提取检查
+python -m markitdown output.pptx
+
+# 检查残留占位符文本
+python -m markitdown output.pptx | grep -iE "xxxx|lorem|ipsum|this.*(page|slide).*layout"
+```
+
+如果 grep 有结果，在宣布完成前修复。
+
+#### 视觉 QA
+
+**⚠️ 使用 SUBAGENTS** — 即使只有 2-3 张幻灯片。你盯着代码看久了，会看到你以为的内容，而非实际内容。Subagent 有新鲜视角。
+
+```bash
+# 转换为图片
+python scripts/office/soffice.py --headless --convert-to pdf output.pptx
+pdftoppm -jpeg -r 150 output.pdf slide
+```
+
+然后使用以下 prompt 检查：
+
+```
+Visually inspect these slides. Assume there are issues — find them.
+
+Look for:
+- Overlapping elements (text through shapes, lines through words, stacked elements)
+- Text overflow or cut off at edges/box boundaries
+- Decorative lines positioned for single-line text but title wrapped to two lines
+- Source citations or footers colliding with content above
+- Elements too close (< 0.3" gaps) or cards/sections nearly touching
+- Uneven gaps (large empty area in one place, cramped in another)
+- Insufficient margin from slide edges (< 0.5")
+- Columns or similar elements not aligned consistently
+- Low-contrast text (e.g., light gray text on cream-colored background)
+- Low-contrast icons (e.g., dark icons on dark backgrounds without a contrasting circle)
+- Text boxes too narrow causing excessive wrapping
+- Leftover placeholder content
+
+For each slide, list issues or areas of concern, even if minor.
+
+Read and analyze these images:
+1. /path/to/slide-01.jpg (Expected: [brief description])
+2. /path/to/slide-02.jpg (Expected: [brief description])
+
+Report ALL issues found, including minor ones.
+```
+
+#### 验证循环
+
+1. 生成幻灯片 → 转换为图片 → 检查
+2. **列出发现的问题**（如无问题，更批判性地再检视）
+3. 修复问题
+4. **重新验证受影响的幻灯片** — 一个修复常引发另一个问题
+5. 重复直到完整检查无新问题
+
+**在完成至少一次修复-验证循环前不要宣布成功。**
+
+---
+
+### PptxGenJS 常见错误清单
+
+⚠️ 以下问题会导致文件损坏、视觉 bug 或输出异常。避免之。
+
+1. **绝不使用 "#" 前缀的十六进制颜色** — 导致文件损坏
+   ```javascript
+   color: "FF0000"      // ✅ 正确
+   color: "#FF0000"     // ❌ 错误
+   ```
+
+2. **绝不在十六进制颜色字符串中编码透明度** — 8字符颜色（如 `"00000020"`）会损坏文件。使用 `opacity` 属性。
+   ```javascript
+   shadow: { type: "outer", blur: 6, offset: 2, color: "00000020" }          // ❌ 损坏文件
+   shadow: { type: "outer", blur: 6, offset: 2, color: "000000", opacity: 0.12 }  // ✅ 正确
+   ```
+
+3. **使用 `bullet: true`** — 绝不使用 unicode 符号如 "•"（会造成双项目符号）
+   ```javascript
+   // ✅ 正确
+   { text: "First item", options: { bullet: true, breakLine: true } }
+   { text: "Second item", options: { bullet: true, breakLine: true } }
+
+   // ❌ 错误 — 不要用 unicode bullets
+   "• First item"
+   ```
+
+4. **数组项之间使用 `breakLine: true`** — 否则文字会连在一起
+
+5. **避免 `lineSpacing` 与 bullets 搭配** — 会导致过大间隙；使用 `paraSpaceAfter` 代替
+
+6. **每次创建新实例** — 不要复用 `pptxgen()` 对象
+
+7. **绝不要重用 option 对象** — PptxGenJS 会 in-place 修改对象（如将 shadow 值转换为 EMU）。共享一个对象会导致第二个 shape 损坏。
+   ```javascript
+   const makeShadow = () => ({ type: "outer", blur: 6, offset: 2, color: "000000", opacity: 0.15 });
+   slide.addShape(pres.shapes.RECTANGLE, { shadow: makeShadow(), ... });  // ✅ 每次新建
+   slide.addShape(pres.shapes.RECTANGLE, { shadow: makeShadow(), ... });
+   ```
+
+8. **不要对 accent borders 使用 `ROUNDED_RECTANGLE`** — 矩形叠加条无法覆盖圆角。使用 `RECTANGLE`。
+
+9. **图表始终包含坐标轴标题和图表标题**：
+   ```javascript
+   slide.addChart(pres.charts.BAR, chartData, {
+     catAxisTitle: "x轴标题",
+     valAxisTitle: "y轴标题",
+     showValAxisTitle: true,
+     showCatAxisTitle: true,
+     title: "图表标题",
+     showTitle: true,
+     // ... 其他样式
+   });
+   ```
+
+10. **让图表更美观的选项**：
+    ```javascript
+    {
+      chartColors: ["0D9488", "14B8A6", "5EEAD4"],
+      chartArea: { fill: { color: "FFFFFF" }, roundedCorners: true },
+      catAxisLabelColor: "64748B",
+      valAxisLabelColor: "64748B",
+      valGridLine: { color: "E2E8F0", size: 0.5 },
+      catGridLine: { style: "none" },
+      lineSmooth: true,
+      legendPos: "r"
+    }
+    ```
+
+---
+
+### Icon 渲染流程（如需使用图标）
+
+```javascript
+const React = require("react");
+const ReactDOMServer = require("react-dom/server");
+const sharp = require("sharp");
+const { FaCheckCircle, FaChartLine } = require("react-icons/fa");
+
+function renderIconSvg(IconComponent, color = "#000000", size = 256) {
+  return ReactDOMServer.renderToStaticMarkup(
+    React.createElement(IconComponent, { color, size: String(size) })
+  );
+}
+
+async function iconToBase64Png(IconComponent, color, size = 256) {
+  const svg = renderIconSvg(IconComponent, color, size);
+  const pngBuffer = await sharp(Buffer.from(svg)).png().toBuffer();
+  return "image/png;base64," + pngBuffer.toString("base64");
+}
+
+// 使用
+const iconData = await iconToBase64Png(FaCheckCircle, "#4472C4", 256);
+slide.addImage({ data: iconData, x: 1, y: 1, w: 0.5, h: 0.5 });
+```
+
+常用图标库：`react-icons/fa` (Font Awesome), `react-icons/md` (Material Design), `react-icons/hi` (Heroicons), `react-icons/bi` (Bootstrap Icons)
+
+安装：`npm install -g react-icons react react-dom sharp`
