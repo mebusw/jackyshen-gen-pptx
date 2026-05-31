@@ -1,6 +1,6 @@
 ---
-name: pptx-gen
-description: using pptxgenjs library to generate contents of powerpoint slides.
+name: jackyshen-pptx-gen
+description: using pptxgenjs library to generate contents of powerpoint slides. 做片子、做幻灯片、画ppt
 author: mebusw
 ---
 
@@ -121,6 +121,7 @@ Visual Elements: 所有的图表、箭头和边框都应看起来像是用铅笔
 - **不要居中对齐正文** — 左对齐段落和列表；仅标题居中
 - **不要吝啬字号对比** — 标题需要36pt+与14-16pt正文形成对比
 - **不要默认使用蓝色** — 选反映主题的颜色
+- **不要让主标题换行** - 规划布局时要考虑主标题尽量是在同一行，文本框宽度要足够容纳
 - **不要随意混用间距** — 选择0.3”或0.5”间距并一致使用
 - **不要只美化一张幻灯片而忽略其他** — 全面投入或保持简约
 - **不要创建纯文字幻灯片** — 添加图片、图标、图表
