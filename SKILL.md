@@ -1,5 +1,5 @@
 ---
-name: jackyshen-pptx-gen
+name: jackyshen-gen-pptx
 description: using pptxgenjs library to generate contents of powerpoint slides. 做片子、做幻灯片、画ppt
 author: mebusw
 ---
