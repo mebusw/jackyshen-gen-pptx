@@ -1,5 +1,5 @@
 ---
-name: pptx-uperform
+name: jackyshen-gen-pptx
 description: "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations, with color palettes of UPerform company; reading, parsing, or extracting text from any .pptx file (even if the extracted content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates, layouts, speaker notes, or comments. Trigger whenever the user mentions \"deck,\" \"slides,\" \"presentation,\" \"幻灯片,\" \"PPT,\" or references a .pptx filename, regardless of what they plan to do with the content afterward. If a .pptx file needs to be opened, created, or touched, use this skill."
 author: JackyShen
 ---
@@ -63,8 +63,11 @@ python scripts/office/unpack.py presentation.pptx unpacked/
 
 选择与主题匹配的配色——不要默认使用通用蓝色。用这些配色方案作为灵感：
 
+缺省默认主题色是**优普丰(UPerform)**，其具体的配色方案和设计要求参见 `references/优普丰品牌设计配色方案.md`
+
 | 主题 | 主色 | 辅助色 | 强调色 |
 |-------|---------|-----------|--------|
+| **优普丰(UPerform)** | `0A2540` (深海蓝) | `D4AF37` (尊贵金) | `FF6B35` (活力橙) |
 | **午夜高管** | `1E2761`（藏青） | `CADCFC`（冰蓝） | `FFFFFF`（白） |
 | **森林与苔藓** | `2C5F2D`（森林绿） | `97BC62`（苔藓绿） | `F5F5F5`（奶油白） |
 | **珊瑚活力** | `F96167`（珊瑚红） | `F9E795`（金色） | `2F3C7E`（藏青） |
@@ -75,7 +78,7 @@ python scripts/office/unpack.py presentation.pptx unpacked/
 | **浆果与奶油** | `6D2E46`（浆果紫） | `A26769`（暗玫瑰） | `ECE2D0`（奶油色） |
 | **鼠尾草宁静** | `84B59F`（鼠尾草绿） | `69A297`（桉树绿） | `50808E`（石板灰） |
 | **樱桃大胆** | `990011`（樱桃红） | `FCF6F5`（米白） | `2F3C7E`（藏青） |
-| **优普丰(UPerform)** | `0A2540` (深海蓝) | `D4AF37` (尊贵金) | `FF6B35` (活力橙) |
+
 
 **配色原则：**
 - **主导色占60-70%视觉权重**，1-2个辅助色，1个强调色
