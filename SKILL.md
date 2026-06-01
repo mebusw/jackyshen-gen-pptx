@@ -42,7 +42,7 @@ python scripts/office/unpack.py presentation.pptx unpacked/
 
 ## 从零开始创建
 
-**完整详情请阅读 [pptxgenjs.md](pptxgenjs.md)。**
+**完整详情请阅读 [creating.md](creating.md)。**
 
 当没有模板或参考演示文稿时使用。
 
@@ -75,7 +75,7 @@ python scripts/office/unpack.py presentation.pptx unpacked/
 | **浆果与奶油** | `6D2E46`（浆果紫） | `A26769`（暗玫瑰） | `ECE2D0`（奶油色） |
 | **鼠尾草宁静** | `84B59F`（鼠尾草绿） | `69A297`（桉树绿） | `50808E`（石板灰） |
 | **樱桃大胆** | `990011`（樱桃红） | `FCF6F5`（米白） | `2F3C7E`（藏青） |
-| **优普丰(UPerform)** | `083A67` (深海蓝) | `4F82BA` (钢蓝) | `FF9B7D` (珊瑚橙) |
+| **优普丰(UPerform)** | `0A2540` (深海蓝) | `D4AF37` (尊贵金) | `FF6B35` (活力橙) |
 
 **配色原则：**
 - **主导色占60-70%视觉权重**，1-2个辅助色，1个强调色
