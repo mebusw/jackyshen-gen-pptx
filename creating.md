@@ -1129,7 +1129,7 @@ slide.addImage({ path: bannerTitlePng, x: 0.5, y: 0.15, w: 9.0, h: 0.8 });
 | ❌ 把图片生成写成 "如需要" | todo 列表里写「生成图片（如需要）」 | 给自己留了"不需要"的退路，结果真就没做 |
 | ❌ 跳过 Task 0 | 没有任何 `output.mjson` 里 `image_placeholder` 条目 | 后面想补也无从下手 |
 | ❌ 用形状假装是图片 | 把"AI/经/贸/环/市/效"单字塞进 0.6" 小圆圈 | 看起来业余，明显是"权宜之计" |
-| ❌ 排查 `react-icons`/`sharp` 失败就放弃 | 改用单字字符 | 完全忽略 `wanx-img`、`huny-img` 等可用 AI 生图 skill |
+| ❌ 排查 `react-icons`/`sharp` 失败就放弃 | 改用单字字符 | 完全忽略 `wanx-img`、`huny-img`、`minimax` 等可用 AI 生图 skill |
 | ❌ 自欺式判断"已经够丰富了" | 通篇 19 页都是 形状+文字+金句 | 封面、ADKAR、CLARC、收官页都本应有图 |
 
 最终产物 489 个元素、19 张幻灯片全部在边界内、结构 OK，但**没有一张配图**。用户原话："good, 但是反思你为什么没生成任何图片？"
@@ -1139,7 +1139,7 @@ slide.addImage({ path: bannerTitlePng, x: 0.5, y: 0.15, w: 9.0, h: 0.8 });
 | 借口 | 为什么是陷阱 | 正确做法 |
 |------|------------|---------|
 | "形状+图标已经够丰富了" | 形状永远不是图片；通篇几何感会让演示看起来像流程图而非商务演示 | **默认要为封面 + 核心模型页 + 收官页配图** |
-| "react-icons / sharp 不可用" | 那是 npm 库问题；**AI 生图 skill 是另一条路** | 扫一眼 `huny-img`、`wanx-img` 等可用的图生 skill |
+| "react-icons / sharp 不可用" | 那是 npm 库问题；**AI 生图 skill 是另一条路** | 扫一眼 `huny-img`、`wanx-img` 、`minimax`等可用的图生 skill |
 | "生图耗时太长" | 调用 AI 生图 + 下载 ≈ 1–2 分钟/张；**不生图的代价是用户重做** | 早花 5 分钟生图 vs 晚花 20 分钟返工 |
 | "环境没装 LibreOffice/soffice" | 这影响的是 PDF 转图片做 QA，**不影响 PPT 内嵌图片** | 区分开"QA 工具" vs "PPT 内容"两件事 |
 | "用户没明确要图" | 用户说"做个 PPT"等价于"做份好看的 PPT"，好看就需要图 | 默认 4–6 张起步；少图要明确说"极简版" |
