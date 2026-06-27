@@ -2,9 +2,18 @@
 name: jackyshen-gen-pptx
 description: "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations, with color palettes of UPerform company; reading, parsing, or extracting text from any .pptx file (even if the extracted content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates, layouts, speaker notes, or comments. Trigger whenever the user mentions \"deck,\" \"slides,\" \"presentation,\" \"幻灯片,\" \"PPT,\" or references a .pptx filename, regardless of what they plan to do with the content afterward. If a .pptx file needs to be opened, created, or touched, use this skill."
 author: JackyShen
+argument-hint: "[-t THEME] [-noIMG] [-noQA]"
 ---
 
-# PPTX SKILL
+
+# /pptx [-t THEME] [-noIMG] [-noQA] 
+
+生成指定风格的pptx格式幻灯片。
+
+- 不带参数：调度所有任务步骤。
+- 参数`-t THEME`：指定[配色方案](#配色方案)
+- 参数`-noIMG`：不使用文生图skill进行配图
+- 参数`-noQA`：跳过QA步骤
 
 ## 快速参考
 
@@ -112,13 +121,14 @@ python scripts/office/unpack.py presentation.pptx unpacked/
 
 | 标题字体 | 正文字体 | 适用场景 |
 |-------------|-----------|----------|
+| 宋体 | 黑体 | 商务、时尚、杂志风 |
 | Georgia | Calibri | 正式商务、学术 |
 | Arial Black | Arial | 强烈、现代感 |
 | Trebuchet MS | Calibri | 科技、现代 |
 | Palatino | Garamond | 优雅、传统 |
 | Consolas | Calibri | 技术、数据 |
 | 演示悠然小楷 | 圆体 | 手绘、亲和 |
-| 宋体 | 黑体 | 时尚、杂志风 |
+
 
 
 | 元素 | 字号 |
