@@ -58,6 +58,8 @@ argument-hint: "[-t THEME] [-noIMG] [-noQA]"
 | 读取/分析内容 | `python -m markitdown presentation.pptx` |
 | 编辑或从模板创建 | 阅读 [editing.md](editing.md) |
 | 从零开始创建 | 阅读 [creating.md](creating.md) |
+| 为单页幻灯片选布局（咨询/汇报类 PPT 8 大类） | 阅读 [references/slide-layouts.md](references/slide-layouts.md) |
+| 为信息选关系图形（Hierarchy / Process / Cycle / Matrix / Framework…） | 阅读 [references/diagrams.md](references/diagrams.md) |
 
 ---
 
@@ -153,6 +155,10 @@ python scripts/office/unpack.py presentation.pptx unpacked/
 **视觉打磨：**
 - 章节标题旁的小彩色圆形图标
 - 斜体强调文字用于关键数据或标语
+
+**更多视觉参考（按结构选型，别凭感觉画）：**
+- 页面布局（上下 / 左右 / 三栏 / 矩阵 / 中心辐射 / 时间 / 数据型）：[references/slide-layouts.md](references/slide-layouts.md)
+- 智能图形（Hierarchy / Process / Cycle / Comparison / Matrix / Framework / Strategy / Architecture）：[references/diagrams.md](references/diagrams.md)
 
 ### 字体排版
 
