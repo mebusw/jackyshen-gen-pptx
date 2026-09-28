@@ -28,6 +28,55 @@
 
 ---
 
+## 相关文件与依赖关系
+
+> **本文件定位**：结构维度（topology）——信息是什么拓扑？
+
+| 文件 | 关系 | 何时查阅 |
+|---|---|---|
+| [SKILL.md](../SKILL.md) | 上游入口 | 整个生成流程的入口、配色 / 字体 / QA 规则 |
+| [slide-layouts.md](slide-layouts.md) | 正交维度 | 单页怎么分块（上下 / 左右 / 矩阵 / 时间…）——和本页正交，不冲突 |
+| [visual-metaphors.md](visual-metaphors.md) | **主从张力**（见该文件 §32 与末尾"## 与 diagrams.md 的关系"） | 当这页是**隐喻主导**（转型 / 升级 / 突破 / 增长等情绪）时 |
+| [优普丰品牌设计配色方案.md](优普丰品牌设计配色方案.md) | 下游（视觉层） | 选好结构后用什么颜色 |
+
+### 三个 reference 文件的分工
+
+```
+slide-layouts.md     ← 单页布局（page-level, ortho dimension）
+       │
+       ▼
+┌──────────────────┐
+│  这页 PPT 内容    │
+└────────┬─────────┘
+         │
+   ┌─────┴──────┐
+   ↓            ↓
+diagrams.md    visual-metaphors.md
+(结构维度)     (隐喻维度)
+   │            │
+   └─────┬──────┘
+         ↓
+   pptxgenjs 渲染
+         ↓
+   视觉 QA
+```
+
+### 关键交叉点（在本文件中的位置）
+
+- §10 路由示例 → 选图前先看 §10.1 的 4 元组（Entity / Relationship / Problem / Target）
+- §12 路由规则 → 完整 if/then 路由逻辑
+- §16 端到端 Pipeline → 含 visual_intent 的最小完整示例
+- §32（跨文件）→ visual-metaphors.md 里的 `visual_intent` schema，包含 `relation_to_base_structure` 字段判断"兼容 vs 覆盖"
+
+### 与 visual-metaphors.md 的引用约定
+
+本文件讲**结构**（什么形状适合数据），visual-metaphors.md 讲**隐喻**（什么情绪适合叙事）。两者关系见视觉隐喻库末尾的"## 与 diagrams.md 的关系（主从张力模型）"。
+
+> **本文件不教怎么讲故事，那是 `visual-metaphors.md` 的事。**
+
+---
+
+
 ## 目录
 
 **Part A — 图形类型库（选哪种图形？）**
@@ -187,6 +236,24 @@ spokes:
     label: Agent
 ```
 
+**ASCII 示意：**
+
+```text
+           组织
+            ↑
+            │
+流程 ←── AI平台 ──→ 数据
+            │
+            ↓
+           Agent
+```
+
+适用场景：中心节点明确（这里是 AI 平台），周边有 3-8 个 spoke 节点，关系是**单向**或**中心向外辐射**。
+
+**⚠️ 何时不要用 Hub & Spoke：**
+
+如果周边节点之间也存在关系（如流程 ↔ 数据），或整体是**多对多网络**（如 Customer ↔ Platform ↔ Partner ↔ Agent ↔ Data），应该用 **Ecosystem**（§17.5）而不是 Hub & Spoke。
+
 ---
 
 ## 3. Cycle（循环 / 闭环）
@@ -263,7 +330,26 @@ items:
     y: 6
 ```
 
-自动布局产出 2×2 象限（Quick Wins / Strategic Bets / Fill-ins / Avoid）。
+自动布局产出 2×2 象限：
+
+```text
+High Impact
+    │
+    │   Quick Wins       Strategic Bets
+    │
+    │
+    │   Fill-ins         Avoid / Later
+    │
+    └──────────────────────────────
+       Low Effort       High Effort
+```
+
+四个象限的语义：
+
+- **Quick Wins**（左上：高影响 + 低投入）→ 优先做
+- **Strategic Bets**（右上：高影响 + 高投入）→ 战略性投入
+- **Fill-ins**（左下：低影响 + 低投入）→ 有空再做
+- **Avoid / Later**（右下：低影响 + 高投入）→ 暂缓
 
 ---
 
@@ -318,7 +404,18 @@ workstreams:
   - name: AI
 ```
 
-自动产出横向 swimlane 时间线，每个 workstream 一行，横跨 3 个 horizon。
+自动产出横向 swimlane 时间线：
+
+```text
+             NOW             NEXT             LATER
+
+Organization ────────●────────────────────────────
+Process      ───────────────●─────────────────────
+Technology   ─────●───────────────●───────────────
+AI           ─────────●──────────────────●────────
+```
+
+每个 workstream 一行，每个 horizon 占一段，节点位置由 start/end period 自动推算。
 
 ---
 
@@ -534,6 +631,117 @@ Target       = <期望产出 / 想强调的洞察>
 4. **套模板**：匹配命中 → 用已知模板 → Auto Layout 出坐标。
 5. **没有匹配**：降级到最接近的通用结构（Process / Hierarchy / Matrix），不要硬画。
 
+### 10.4 完整 Router Examples（3 个真实场景）
+
+> 这里是 §10.2 路由表的**完整版**——含输入文本、semantic graph、Router 完整 YAML 输出。
+> 和"被选中" vs"被拒绝"的对比示例。
+
+#### Router Example 1 — 优先级矩阵（Impact × Effort）
+
+**输入：**
+
+```text
+我们有 20 个 AI 应用场景，
+按照业务价值和实施难度进行分类，
+并希望找出优先实施的场景。
+```
+
+**Semantic extraction：**
+
+```yaml
+entities:
+  - AI Use Case
+
+dimensions:
+  - Business Value
+  - Implementation Difficulty
+
+objective:
+  - Prioritization
+```
+
+**Router 决策：**
+
+```yaml
+selected_diagram:
+  type: matrix
+  subtype: impact_effort
+```
+
+**而不是：**
+
+```yaml
+selected_diagram:
+  type: cards      # ❌ cards 不能体现 2D 分类
+```
+
+**理由：** 内容有 2 个维度（Business Value × Implementation Difficulty）+ 大量 items（20 个 AI 场景）→ 命中 §12 router_rules 中 `dimensions: 2, items: many → matrix` 规则。
+
+---
+
+#### Router Example 2 — 分层架构（Layered Hierarchy）
+
+**输入：**
+
+```text
+AI 战略向下分解成业务目标、
+业务目标进一步形成 AI 场景，
+AI 场景再落到 Agent 和自动化能力。
+```
+
+**Semantic graph：**
+
+```text
+Strategy
+   ↓
+Business Objective
+   ↓
+AI Use Case
+   ↓
+Agent / Automation
+```
+
+**Router 决策：**
+
+```yaml
+diagram:
+  type: layered_hierarchy
+```
+
+**理由：** 单向 contains 关系、4 层深度、纯层级 → 命中 `relationship: hierarchy, depth: 3+ → tree / layered_architecture`。完整 5 步示例见 §16。
+
+---
+
+#### Router Example 3 — 跨职能多对多（Cross-Functional Many-to-Many）
+
+**输入：**
+
+```text
+研发、采购、SQE 和物流之间存在多个数据断点，
+一个 AI 场景可能同时涉及多个部门。
+```
+
+**Router 决策：**
+
+```yaml
+relationship: many_to_many
+problem: cross_functional_dependency
+
+diagram:
+  type: cross_mapping
+```
+
+**而不是：**
+
+```yaml
+diagram:
+  type: hub_spoke    # ❌ hub_spoke 会丢失"多个 AI 场景 ↔ 多个部门"的交叉关联
+```
+
+**理由：** 4 个部门（研发/采购/SQE/物流）+ 多个 AI 场景 + 关系是**多对多** + 问题本质是**数据断点 / 跨职能依赖** → 命中 `many_to_many → mapping` 规则，应该用 cross_mapping 而不是 hub_spoke。
+
+完整 Many-to-Many Mapping YAML 模板见 §17.3。
+
 ---
 
 ## 11. 咨询推理模式（Consulting Reasoning Patterns）
@@ -696,6 +904,54 @@ Layout algorithm（计算坐标）
 Render
 ```
 
+**完整的 Auto Layout Pipeline：**
+
+```text
+Semantic Graph
+      ↓
+Graph Constraints        # §13.3 的 canvas/nodes/spacing/text/connectors 约束
+      ↓
+Layout Algorithm         # §13.2 按 diagram type 选算法
+      ↓
+Bounding Boxes           # 节点尺寸 + 位置
+      ↓
+Connector Routing        # §14.1 连线路由（orthogonal / direct / curved）
+      ↓
+Collision Detection      # 检测碰撞并修复
+      ↓
+Render
+```
+
+**错误示范（LLM 随机生成坐标）：**
+
+```text
+x = random()
+y = random()
+```
+
+**正确流程（结构化数据 → 算法 → 坐标）：**
+
+```js
+const graph = {
+  nodes: [
+    { id: "strategy", importance: 1.0 },
+    { id: "business", importance: 0.7 },
+    { id: "execution", importance: 0.4 }
+  ],
+  edges: [
+    { from: "strategy", to: "business" },
+    { from: "business", to: "execution" }
+  ]
+}
+
+const layout = layoutEngine.calculate(graph, {
+  algorithm: "dag_sugiyama",
+  constraints: layoutConstraints
+})
+
+render(layout)
+```
+
 **严禁 LLM 输出：**
 
 ```text
@@ -729,6 +985,47 @@ edges:
 | **Tree（问题树 / 决策树）** | **Tree layout** | 递归计算子树宽度，父节点居中 |
 | **Matrix（矩阵 / 热力图）** | **Grid layout** | 按 x/y 归一化到网格 |
 | **Hub & Spoke / Radial** | **Radial layout** | 极坐标：中心点 + 角度均匀分布 |
+
+### 13.2.1 Hierarchy 算法（7 步）
+
+```text
+Algorithm:
+
+1. Identify root nodes             # 识别根节点
+2. Calculate node depth            # 计算每个节点深度
+3. Group nodes by depth            # 按深度分层
+4. Calculate width of each subtree # 计算每个子树宽度
+5. Position parent at center of children  # 父节点居中于子节点中间
+6. Resolve sibling collisions      # 解决兄弟节点碰撞
+7. Normalize spacing               # 统一间距
+```
+
+### 13.2.2 Radial 算法
+
+```text
+angle = 360° / node_count
+
+for each node:
+    x = centerX + radius * cos(angle)
+    y = centerY + radius * sin(angle)
+```
+
+### 13.2.3 Timeline 算法
+
+```text
+timeline_x = startX + index * interval
+node.y     = lane_y[workstream]    # 每个 workstream 占一条 lane
+```
+
+### 13.2.4 Matrix 算法
+
+```text
+column = normalize(x_value)
+row    = normalize(y_value)
+
+x = matrix.left + column * matrix.width
+y = matrix.bottom - row * matrix.height
+```
 
 ### 13.3 Auto Layout Constraints（标准约束）
 
@@ -796,6 +1093,39 @@ A ───────┐
          └────────→ B
 
         C  ← 独立显示
+```
+
+**真实场景示例（PPT 渲染时常见）：**
+
+```text
+        Strategy
+           │
+           ↓
+        Business
+           │
+           ↓
+        Capability   ← ← ← 连线直接从 Strategy 穿透到这里，跨越了 Business
+```
+
+应该重构成：
+
+```text
+        Strategy
+           │
+           ↓
+        Business ────────────┐
+           │                │
+           ↓                ↓
+        Capability   ──→  Execution Layer
+```
+
+**或用 orthogonal routing：**
+
+```text
+Strategy ───┐
+            │
+            └──→ Execution
+Business ───┘
 ```
 
 ### 14.2 Visual Hierarchy Engine（视觉层级引擎）
@@ -1075,6 +1405,18 @@ relationships:
 > 如果关系不是简单的中心辐射，而是**多对多、双向**（Customer ↔ Platform ↔ Partner ↔ Agent），
 > **不要用** Hub & Spoke。Hub & Spoke 会丢失"交叉关联"信息。
 
+**ASCII 示意：**
+
+```text
+Customer
+   ↕
+Platform
+ ↙   ↘
+Partner  Agent
+  ↘     ↙
+    Data
+```
+
 ```yaml
 type: ecosystem
 
@@ -1102,6 +1444,16 @@ network relationship
 
 → ecosystem / network diagram
 ```
+
+**与 Hub & Spoke 的对比：**
+
+| 维度 | Hub & Spoke | Ecosystem |
+|---|---|---|
+| 中心 | 明确（hub） | 无中心（任意节点可作中心） |
+| 关系方向 | 单向 / 中心向外 | 多向 / 双向 |
+| 节点数 | 中心 1 + spoke 3-8 | 任意（≥4） |
+| spoke 间关系 | 无 | 任意两节点都可连 |
+| 适合 | "以 X 为核心的能力图" | "X / Y / Z 之间的协作网络" |
 
 ---
 

@@ -62,8 +62,9 @@ argument-hint: "[-t THEME] [-IMG] [-QA]"
 | 读取/分析内容 | `python -m markitdown presentation.pptx` |
 | 编辑或从模板创建 | 阅读 [editing.md](editing.md) |
 | 从零开始创建 | 阅读 [creating.md](creating.md) |
-| 为单页幻灯片选布局（咨询/汇报类 PPT 8 大类） | 阅读 [references/slide-layouts.md](references/slide-layouts.md) |
-| 为信息选关系图形（Hierarchy / Process / Cycle / Matrix / Framework…） | 阅读 [references/diagrams.md](references/diagrams.md) |
+| 为单页选布局（咨询/汇报类 PPT 8 大类） | 阅读 [references/slide-layouts.md](references/slide-layouts.md) |
+| 为信息结构选图形（结构主导：层级 / 流程 / 矩阵 / 生态 / 多对多…） | 阅读 [references/diagrams.md](references/diagrams.md) |
+| 为叙事情绪选隐喻（隐喻主导：升级 / 曲折 / 突破 / 增长 / 聚焦…） | 阅读 [references/visual-metaphors.md](references/visual-metaphors.md) |
 
 ---
 
@@ -160,9 +161,31 @@ python scripts/office/unpack.py presentation.pptx unpacked/
 - 章节标题旁的小彩色圆形图标
 - 斜体强调文字用于关键数据或标语
 
-**更多视觉参考（按结构选型，别凭感觉画）：**
-- 页面布局（上下 / 左右 / 三栏 / 矩阵 / 中心辐射 / 时间 / 数据型）：[references/slide-layouts.md](references/slide-layouts.md)
-- 智能图形（Hierarchy / Process / Cycle / Comparison / Matrix / Framework / Strategy / Architecture）：[references/diagrams.md](references/diagrams.md)
+**更多视觉参考（结构 vs 隐喻：主从张力）**
+
+视觉决策涉及**两个维度**，它们之间是**主从张力**关系，不是正交、也不是上下层：
+
+| 维度 | 关心的问题 | 文档 |
+|---|---|---|
+| **结构维度**（topology） | 信息是什么拓扑？（层级 / 流程 / 矩阵 / 网络 / 多对多…） | [references/diagrams.md](references/diagrams.md) |
+| **隐喻维度**（emotion） | 读者应该感受到什么？（升级 / 曲折 / 突破 / 增长 / 聚焦…） | [references/visual-metaphors.md](references/visual-metaphors.md) |
+| 页面布局 | 单页怎么分块（上下 / 左右 / 矩阵 / 中心辐射 / 时间 / 数据型） | [references/slide-layouts.md](references/slide-layouts.md) |
+
+**何时走哪条路径？**
+
+| 这页要传达的是… | 主从 | 路径 |
+|---|---|---|
+| 清晰的层级 / 流程 / 关系 / 矩阵 | **结构主导** | 查 `diagrams.md` 选对应几何图形 |
+| 转型 / 升级 / 突破 / 增长等情绪 | **隐喻主导** | 查 `visual-metaphors.md` 选对应隐喻（隐喻会覆盖结构） |
+| 两者都重要 | **两者都用** | `diagrams.md` 选结构 → `visual-metaphors.md` 选**兼容隐喻**（如 Staircase ≈ Pyramid）或**覆盖隐喻**（如 Wave 替代 Pyramid） |
+
+**关键提醒：** 同样的 3 层内容（如"AI 转型 战略 → 业务 → 执行"），可以走 3 条不同路径：
+
+- **纯结构** → Plain Pyramid（中性、清晰、强调层级）
+- **结构 + 兼容隐喻** → Staircase（保留层级、加"↗ 升级"方向感）
+- **隐喻覆盖** → Mountain / Wave Timeline / Growth Curve（情绪优先，结构被重新定义成山峰/折线/曲线）
+
+**问的不是"哪个好看"——是"这页要让读者带走的是结构清晰度，还是情绪方向？"**
 
 ### 字体排版
 
