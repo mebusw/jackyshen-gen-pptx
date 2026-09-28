@@ -1,6 +1,6 @@
 ---
 name: jackyshen-gen-pptx
-description: "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations, with color palettes of UPerform company; reading, parsing, or extracting text from any .pptx file (even if the extracted content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates, layouts, speaker notes, or comments. Trigger whenever the user mentions \"deck,\" \"slides,\" \"presentation,\" \"幻灯片,\" \"PPT,\" or references a .pptx filename, regardless of what they plan to do with the content afterward. If a .pptx file needs to be opened, created, or touched, use this skill."
+description: "Use this skill to create, edit, read, or extract from .pptx files — generate slide decks / pitch decks / presentations (with UPerform company color palettes by default), parse text from existing decks, modify slides in place, combine or split slide files, and work with templates, layouts, speaker notes, or comments. Trigger when the user mentions \"deck,\" \"slides,\" \"presentation,\" \"幻灯片,\" \"PPT,\" or references a .pptx filename and wants something done to that file or generated as one. Skip if the user only wants to discuss or summarize deck content without touching the file."
 author: JackyShen
 argument-hint: "[-t THEME] [-IMG] [-QA]"
 ---
@@ -19,7 +19,7 @@ argument-hint: "[-t THEME] [-IMG] [-QA]"
 - 参数 `-IMG`：**显式启用配图**——调用文生图 skill 为 PPT 配图。
 - 参数 `-QA`：**显式启用 QA**——生成后做内容 + 视觉质检。
 
----
+***
 
 ## ⚠️ 当 `-IMG` 被传入时：图片先行流程（来自真实事故的反思）
 
@@ -66,7 +66,7 @@ argument-hint: "[-t THEME] [-IMG] [-QA]"
 | 为信息结构选图形（结构主导：层级 / 流程 / 矩阵 / 生态 / 多对多…） | 阅读 [references/diagrams.md](references/diagrams.md) |
 | 为叙事情绪选隐喻（隐喻主导：升级 / 曲折 / 突破 / 增长 / 聚焦…） | 阅读 [references/visual-metaphors.md](references/visual-metaphors.md) |
 
----
+***
 
 ## 读取内容
 
@@ -81,7 +81,7 @@ python scripts/thumbnail.py presentation.pptx
 python scripts/office/unpack.py presentation.pptx unpacked/
 ```
 
----
+***
 
 ## 编辑工作的流程
 
@@ -90,7 +90,7 @@ python scripts/office/unpack.py presentation.pptx unpacked/
 1. 用 `thumbnail.py` 分析模板
 2. 解包 → 操作幻灯片 → 编辑内容 → 清理 → 打包
 
----
+***
 
 ## 从零开始创建
 
@@ -98,7 +98,7 @@ python scripts/office/unpack.py presentation.pptx unpacked/
 
 当没有模板或参考演示文稿时使用。
 
----
+***
 
 ## 设计思路
 
@@ -161,7 +161,9 @@ python scripts/office/unpack.py presentation.pptx unpacked/
 - 章节标题旁的小彩色圆形图标
 - 斜体强调文字用于关键数据或标语
 
-**更多视觉参考（结构 vs 隐喻：主从张力）**
+## 视觉决策框架：结构 vs 隐喻
+
+> 这是**选图决策**，不是排版清单。问的不是"哪个好看"——是"这页要让读者带走的是结构清晰度，还是情绪方向？"
 
 视觉决策涉及**两个维度**，它们之间是**主从张力**关系，不是正交、也不是上下层：
 
@@ -184,8 +186,6 @@ python scripts/office/unpack.py presentation.pptx unpacked/
 - **纯结构** → Plain Pyramid（中性、清晰、强调层级）
 - **结构 + 兼容隐喻** → Staircase（保留层级、加"↗ 升级"方向感）
 - **隐喻覆盖** → Mountain / Wave Timeline / Growth Curve（情绪优先，结构被重新定义成山峰/折线/曲线）
-
-**问的不是"哪个好看"——是"这页要让读者带走的是结构清晰度，还是情绪方向？"**
 
 ### 字体排版
 
@@ -233,7 +233,7 @@ python scripts/office/unpack.py presentation.pptx unpacked/
 - **不要让元素超出边界** — 所有元素（包括装饰性元素）必须完全位于幻灯片内（x≥0, y≥0, x+w≤10, y+h≤5.625）。延伸到边界外可能引发渲染问题。
 - **不要让主标题换行** - 规划布局时要考虑主标题尽量是在同一行，文本框宽度要足够容纳
 - **不要把"内容密集"当成不配图的借口** — 默认行为（不传 `-IMG`）下生成纯文字/形状/图表的 PPT 是合法的；只有当用户**显式启用 `-IMG`** 时，才进入"图片先行"硬约束（封面/章节/概念/收尾四金刚 + 整份 ≥ 2 张图）。详见顶部「⚠️ 当 `-IMG` 被传入时：图片先行流程」。
----
+***
 
 ## QA（仅当传入 `-QA` 时执行）
 
@@ -301,7 +301,7 @@ python -m markitdown output.pptx | grep -iE "xxxx|lorem|ipsum|this.*(page|slide)
 
 **在完成至少一个修复-验证循环之前，不要宣布成功。**
 
----
+***
 
 ## 转换为图片
 
@@ -320,7 +320,7 @@ pdftoppm -jpeg -r 150 output.pdf slide
 pdftoppm -jpeg -r 150 -f N -l N output.pdf slide-fixed
 ```
 
----
+***
 
 ## 依赖
 
